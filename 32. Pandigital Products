@@ -1,0 +1,131 @@
+// Problem: A. Skibidus and Amog'u
+// Contest: Codeforces - Codeforces Round 1003 (Div. 4)
+// URL: https://codeforces.com/contest/2065/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
+template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream &os, const T_container &v) { os << '{'; string sep; for (const T &x : v) os << sep << x, sep = ", "; return os << '}'; }
+void dbg_out() { cerr << endl; }
+template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
+#ifdef LOCAL
+#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
+#else
+#define dbg(...)
+#endif
+
+#define ar array
+#define ll long long
+#define ld long double
+#define sza(x) ((int)x.size())
+#define all(a) (a).begin(), (a).end()
+
+const int MAX_N = 1e5 + 5;
+const ll MOD = 1e9 + 7;
+const ll INF = 1e9;
+const ld EPS = 1e-9;
+
+bool check(int a){
+		if(a >9999) return false;
+		int p = a%10;
+    	a/=10;
+    	int q = a%10;
+    	a/=10;
+    	int r = a%10;
+    	a/=10;
+    	int s = a%10;
+    	a/=10;
+    	if((p==0) || (q==0) || (r==0) ||(s==0)) return false;
+    	if((p!=q) && (p!=r) && (p!=s) && (q!=r) && (q!=s) && (r!=s)){
+    		return true;
+    	} else{
+    		return false;
+    	}
+}
+
+void solve() {
+	long long ans=0;
+	set<int> se;
+    for(int a=1;a<=9;a++){
+    	for(int b=1;b<=9;b++){
+    		for(int c=1;c<=9;c++){
+    			for(int d=1;d<=9;d++){
+    				for(int e=1;e<=9;e++){
+    					if((a!=b) && (a!=c) && (a!=d) && (a!=e) && (b!=c) && (b!=d) && (b!=e) && (c!=d) && (c!=e) && (d!=e)){
+    						int p1 = (a*10+b)*(c*100 +d*10 +e);
+    						int p2 = (a)*(b*1000 + c*100 +d*10 +e);
+    						// s.insert(p1);
+    						if(check(p1)){
+    							int a1 =p1;
+    							int p = a1%10;
+						    	a1/=10;
+						    	int q = a1%10;
+						    	a1/=10;
+						    	int r = a1%10;
+						    	a1/=10;
+						    	int s = a1%10;
+						    	a1/=10;
+						    	
+						    	if((a!=p) && (a!=q) && (a!=r) && (a!=s) &&
+						    		(b!=p) && (b!=q) && (b!=r) && (b!=s) &&
+						    		(c!=p) && (c!=q) && (c!=r) && (c!=s) &&
+						    		(d!=p) && (d!=q) && (d!=r) && (d!=s) &&
+						    		(e!=p) && (e!=q) && (e!=r) && (e!=s) 
+						    		){
+						    			se.insert(p1);
+						    			// ans += p1;
+						    		}
+    						}
+    						if(check(p2)){
+    							int a1 =p2;
+    							int p = a1%10;
+						    	a1/=10;
+						    	int q = a1%10;
+						    	a1/=10;
+						    	int r = a1%10;
+						    	a1/=10;
+						    	int s = a1%10;
+						    	a1/=10;
+						    	
+						    	if((a!=p) && (a!=q) && (a!=r) && (a!=s) &&
+						    		(b!=p) && (b!=q) && (b!=r) && (b!=s) &&
+						    		(c!=p) && (c!=q) && (c!=r) && (c!=s) &&
+						    		(d!=p) && (d!=q) && (d!=r) && (d!=s) &&
+						    		(e!=p) && (e!=q) && (e!=r) && (e!=s) 
+						    		){
+						    			se.insert(p2);
+						    			// ans += p2;
+						    		}
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    for(auto a:se){
+    	cout<<a<<endl;
+    	ans += 1ll*a;
+    }
+    
+    
+   cout<<ans;
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    int tc = 1;
+    // cin >> tc;
+    for (int t = 1; t <= tc; t++) {
+        // cout << "Case #" << t << ": ";
+        solve();
+    }
+}
