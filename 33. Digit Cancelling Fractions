@@ -31,24 +31,6 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
-bool check(int a){
-		if(a >9999) return false;
-		int p = a%10;
-    	a/=10;
-    	int q = a%10;
-    	a/=10;
-    	int r = a%10;
-    	a/=10;
-    	int s = a%10;
-    	a/=10;
-    	if((p==0) || (q==0) || (r==0) ||(s==0)) return false;
-    	if((p!=q) && (p!=r) && (p!=s) && (q!=r) && (q!=s) && (r!=s)){
-    		return true;
-    	} else{
-    		return false;
-    	}
-}
-
 void solve() {
 	
     for(int a=1;a<=9;a++){
