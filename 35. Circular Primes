@@ -1,0 +1,111 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
+template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream &os, const T_container &v) { os << '{'; string sep; for (const T &x : v) os << sep << x, sep = ", "; return os << '}'; }
+void dbg_out() { cerr << endl; }
+template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
+#ifdef LOCAL
+#define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
+#else
+#define dbg(...)
+#endif
+
+#define ar array
+#define ll long long
+#define ld long double
+#define sza(x) ((int)x.size())
+#define all(a) (a).begin(), (a).end()
+
+const int MAX_N = 1e5 + 5;
+const ll MOD = 1e9 + 7;
+const ll INF = 1e9;
+const ld EPS = 1e-9;
+
+
+bool isprime(int n){
+	for(int i=2;i<=sqrt(n);i++){
+		if(n%i == 0) return false;
+	}
+	return true;
+}
+
+void solve() {
+	int ans =0;
+    // 3 digits
+    for(int i=100;i<=999;i++){
+    	if(isprime(i)){
+    		int n = i;
+    		int a = n%10;
+    		n/=10;
+    		int b = n%10;
+    		n/=10;
+    		int c = n%10;
+    		if(isprime(a*100+c*10+b) && isprime(b*100+a*10+c)) ans++;
+    	}
+    }
+    
+    // 4 digits
+    for(int i=1000;i<=9999;i++){
+    	if(isprime(i)){
+    		int n = i;
+    		int a = n%10;
+    		n/=10;
+    		int b = n%10;
+    		n/=10;
+    		int c = n%10;
+    		n/=10;
+    		int d = n%10;
+    		if(isprime(a*1000+d*100+c*10+b) && isprime(b*1000+a*100+d*10+c) && isprime(c*1000+b*100+a*10+d)) ans++;
+    	}
+    }
+    
+    // 5 digits
+    for(int i=10000;i<=99999;i++){
+    	if(isprime(i)){
+    		int n = i;
+    		int a = n%10;
+    		n/=10;
+    		int b = n%10;
+    		n/=10;
+    		int c = n%10;
+    		n/=10;
+    		int d = n%10;
+    		n/=10;
+    		int e = n%10;
+    		if(isprime(a*10000+e*1000+d*100+c*10+b) && isprime(b*10000+a*1000+e*100+d*10+c) && isprime(c*10000+b*1000+a*100+e*10+d) && isprime(d*10000+c*1000+b*100+a*10+e)) ans++;
+    	}
+    }
+    
+    // 6 digit
+    for(int i=100000;i<=999999;i++){
+    	if(isprime(i)){
+    		int n = i;
+    		int a = n%10;
+    		n/=10;
+    		int b = n%10;
+    		n/=10;
+    		int c = n%10;
+    		n/=10;
+    		int d = n%10;
+    		n/=10;
+    		int e = n%10;
+    		n/=10;
+    		int f = n;
+    		if(isprime(a*100000+f*10000+e*1000+d*100+c*10+b) && isprime(b*100000+a*10000+f*1000+e*100+d*10+c) && isprime(c*100000+b*10000+a*1000+f*100+e*10+d) && isprime(d*100000+c*10000+b*1000+a*100+f*10+e) && isprime(e*100000+d*10000+c*1000+b*100+a*10+f)) ans++;
+    	}
+    }
+    cout<<ans+13<<endl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    int tc = 1;
+    // cin >> tc;
+    for (int t = 1; t <= tc; t++) {
+        // cout << "Case #" << t << ": ";
+        solve();
+    }
+}
